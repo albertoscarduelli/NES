@@ -1,0 +1,11 @@
+<article class="card">
+  <a class="card-media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ partial "url.html" (.Params.immagine | default "/images/notizia.svg") }}" alt="" loading="lazy">
+  </a>
+  <div class="card-body">
+    <p class="meta">{{ partial "icon.html" "calendario" }}<span>{{ time.Format ":date_long" .Date }}</span></p>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 140 }}{{ end }}</p>
+    <a class="link-arrow" href="{{ .RelPermalink }}">{{ i18n "readMore" }} {{ partial "icon.html" "freccia" }}</a>
+  </div>
+</article>

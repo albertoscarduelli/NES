@@ -1,0 +1,17 @@
+# Dati generali dell'associazione (usati in tutto il sito, in entrambe le lingue)
+nome: NES
+logo: /images/logo.svg
+descrizione_it: "Un'associazione di persone che credono nella partecipazione, nella cultura e nella solidarietà."
+descrizione_en: "An association of people who believe in participation, culture and solidarity."
+email: info@example.org
+telefono: "+39 000 000 0000"
+indirizzo: "Via Esempio 1"
+citta: "00000 Città (XX)"
+codice_fiscale: "00000000000"
+# Posizione sulla mappa (si trova su openstreetmap.org: tasto destro → "Mostra indirizzo")
+latitudine: "45.46420"
+longitudine: "9.19000"
+social:
+  facebook: "https://www.facebook.com/"
+  instagram: "https://www.instagram.com/"
+  youtube: ""

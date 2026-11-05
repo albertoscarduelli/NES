@@ -1,0 +1,28 @@
+# Contenuti della pagina iniziale (Italiano)
+hero:
+  titolo: "Insieme, per la nostra comunità"
+  sottotitolo: "NES è un'associazione di volontari che organizza eventi, incontri e progetti per far crescere il territorio. Testo di esempio da sostituire."
+  immagine: /images/hero.svg
+  pulsante1_testo: "Scopri chi siamo"
+  pulsante1_link: "chi-siamo/"
+  pulsante2_testo: "Prossimi eventi"
+  pulsante2_link: "eventi/"
+
+punti_forza:
+  titolo: "Cosa facciamo"
+  elementi:
+    - icona: persone
+      titolo: "Comunità"
+      testo: "Creiamo occasioni di incontro tra persone di tutte le età, perché stare insieme fa bene."
+    - icona: libro
+      titolo: "Cultura"
+      testo: "Serate, laboratori e presentazioni per imparare qualcosa di nuovo ogni volta."
+    - icona: cuore
+      titolo: "Solidarietà"
+      testo: "Sosteniamo progetti concreti sul territorio grazie al lavoro dei nostri volontari."
+
+invito:
+  titolo: "Vuoi far parte di NES?"
+  testo: "Diventare socio è semplice: ti aspettiamo con le tue idee e il tuo entusiasmo."
+  pulsante_testo: "Diventa socio"
+  pulsante_link: "associati/"

@@ -1,0 +1,32 @@
+{{ $a := hugo.Data.associazione }}
+{{ $lang := site.Language.Lang }}
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand brand-light" href="{{ "/" | relLangURL }}">
+        <img src="{{ partial "url.html" $a.logo }}" alt="" width="40" height="40">
+        <span>{{ $a.nome }}</span>
+      </a>
+      <p>{{ index $a (printf "descrizione_%s" $lang) }}</p>
+    </div>
+    <div>
+      <h3>{{ i18n "contactUs" }}</h3>
+      <ul class="footer-list">
+        {{ with $a.indirizzo }}<li>{{ partial "icon.html" "luogo" }}<span>{{ . }}{{ with $a.citta }}<br>{{ . }}{{ end }}</span></li>{{ end }}
+        {{ with $a.telefono }}<li>{{ partial "icon.html" "telefono" }}<a href="tel:{{ replace . " " "" }}">{{ . }}</a></li>{{ end }}
+        {{ with $a.email }}<li>{{ partial "icon.html" "email" }}<a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
+      </ul>
+    </div>
+    <div>
+      <h3>{{ i18n "followUs" }}</h3>
+      <div class="social">
+        {{ range $name, $url := $a.social }}{{ with $url }}
+          <a href="{{ . }}" aria-label="{{ title $name }}" target="_blank" rel="noopener">{{ partial "icon.html" $name }}</a>
+        {{ end }}{{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {{ now.Year }} {{ $a.nome }}{{ with $a.codice_fiscale }} · {{ i18n "taxCode" }} {{ . }}{{ end }}</p>
+  </div>
+</footer>

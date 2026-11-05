@@ -1,0 +1,18 @@
+{{ $a := hugo.Data.associazione }}
+{{ $title := partial "page-title.html" . }}
+{{ $siteDesc := index $a (printf "descrizione_%s" site.Language.Lang) }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ $a.nome }} – {{ $siteDesc }}{{ else }}{{ $title }} | {{ $a.nome }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ $siteDesc }}{{ end }}">
+<meta name="theme-color" content="#0e6b5c">
+{{ if site.Params.bozza }}<meta name="robots" content="noindex, nofollow">{{ end }}
+<meta property="og:title" content="{{ if .IsHome }}{{ $a.nome }}{{ else }}{{ $title }}{{ end }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ $siteDesc }}{{ end }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+<link rel="icon" href="{{ partial "url.html" $a.logo }}" type="image/svg+xml">
+{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end }}
+{{ $css := resources.Get "css/style.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">

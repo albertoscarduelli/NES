@@ -1,0 +1,8 @@
+{{ $desc := .Description }}
+{{ if and .IsSection (not $desc) }}{{ $desc = i18n (printf "desc_%s" .Section) }}{{ end }}
+<section class="page-header">
+  <div class="container">
+    <h1>{{ partial "page-title.html" . }}</h1>
+    {{ with $desc }}<p class="lead">{{ . }}</p>{{ end }}
+  </div>
+</section>

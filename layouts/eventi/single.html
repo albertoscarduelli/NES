@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article>
+  <section class="page-header">
+    <div class="container">
+      {{ with site.GetPage "/eventi" }}<a class="back" href="{{ .RelPermalink }}">← {{ i18n "allEvents" }}</a>{{ end }}
+      <h1>{{ .Title }}</h1>
+      <ul class="event-facts">
+        <li>{{ partial "icon.html" "calendario" }}<span>{{ time.Format ":date_full" .Date }}</span></li>
+        {{ with .Params.ora }}<li>{{ partial "icon.html" "orologio" }}<span>{{ . }}</span></li>{{ end }}
+        {{ with .Params.luogo }}<li>{{ partial "icon.html" "luogo" }}<span>{{ . }}</span></li>{{ end }}
+      </ul>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow">
+      {{ with .Params.immagine }}<img class="cover" src="{{ partial "url.html" . }}" alt="">{{ end }}
+      <div class="prose">{{ .Content }}</div>
+    </div>
+  </section>
+</article>
+{{ end }}

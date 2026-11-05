@@ -1,0 +1,28 @@
+# Home page content (English)
+hero:
+  titolo: "Together, for our community"
+  sottotitolo: "NES is a volunteer association that organises events, meetings and projects to help our area grow. Sample text to be replaced."
+  immagine: /images/hero.svg
+  pulsante1_testo: "About us"
+  pulsante1_link: "about/"
+  pulsante2_testo: "Upcoming events"
+  pulsante2_link: "events/"
+
+punti_forza:
+  titolo: "What we do"
+  elementi:
+    - icona: persone
+      titolo: "Community"
+      testo: "We create opportunities for people of all ages to meet, because being together is good for everyone."
+    - icona: libro
+      titolo: "Culture"
+      testo: "Evenings, workshops and talks where there is always something new to learn."
+    - icona: cuore
+      titolo: "Solidarity"
+      testo: "We support real projects in our area thanks to the work of our volunteers."
+
+invito:
+  titolo: "Would you like to join NES?"
+  testo: "Becoming a member is easy: bring your ideas and your enthusiasm."
+  pulsante_testo: "Join us"
+  pulsante_link: "join/"

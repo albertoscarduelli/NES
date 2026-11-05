@@ -1,0 +1,9 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<section class="section">
+  <div class="container">
+    {{ with .Content }}<div class="prose narrow">{{ . }}</div>{{ end }}
+    <div class="grid grid-3">{{ range .RegularPages }}{{ partial "news-card.html" . }}{{ end }}</div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,7 @@
+{{- /* Indirizzo di un'immagine o file: aggiunge il percorso del sito (/NES/) */ -}}
+{{- $u := . | default "" -}}
+{{- $out := $u -}}
+{{- if not (or (hasPrefix $u "http") (hasPrefix $u "mailto:") (hasPrefix $u "tel:") (hasPrefix $u "#")) -}}
+  {{- $out = strings.TrimPrefix "/" $u | relURL -}}
+{{- end -}}
+{{- return $out -}}

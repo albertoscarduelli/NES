@@ -1,0 +1,20 @@
+# Foto della galleria (una riga "- immagine" per ogni foto)
+foto:
+  - immagine: /images/galleria-1.svg
+    didascalia_it: "Festa d'estate 2026"
+    didascalia_en: "Summer party 2026"
+  - immagine: /images/galleria-2.svg
+    didascalia_it: "Laboratorio per bambini"
+    didascalia_en: "Children's workshop"
+  - immagine: /images/galleria-3.svg
+    didascalia_it: "Giornata del verde pulito"
+    didascalia_en: "Clean-up day"
+  - immagine: /images/galleria-4.svg
+    didascalia_it: "Concerto in piazza"
+    didascalia_en: "Concert in the square"
+  - immagine: /images/galleria-5.svg
+    didascalia_it: "Assemblea dei soci"
+    didascalia_en: "Members' meeting"
+  - immagine: /images/galleria-6.svg
+    didascalia_it: "Mercatino solidale"
+    didascalia_en: "Charity market"

@@ -1,0 +1,25 @@
+{{ $a := hugo.Data.associazione }}
+<section class="section">
+  <div class="container contact-grid">
+    <div class="contact-cards">
+      {{ with $a.indirizzo }}
+      <div class="contact-card">{{ partial "icon.html" "luogo" }}<div><h3>{{ i18n "address" }}</h3><p>{{ . }}{{ with $a.citta }}<br>{{ . }}{{ end }}</p></div></div>
+      {{ end }}
+      {{ with $a.telefono }}
+      <a class="contact-card" href="tel:{{ replace . " " "" }}">{{ partial "icon.html" "telefono" }}<div><h3>{{ i18n "phone" }}</h3><p>{{ . }}</p></div></a>
+      {{ end }}
+      {{ with $a.email }}
+      <a class="contact-card" href="mailto:{{ . }}">{{ partial "icon.html" "email" }}<div><h3>{{ i18n "email" }}</h3><p>{{ . }}</p></div></a>
+      {{ end }}
+    </div>
+    {{ if and $a.latitudine $a.longitudine }}
+      {{ $lat := float $a.latitudine }}
+      {{ $lon := float $a.longitudine }}
+      {{ $bbox := printf "%.5f,%.5f,%.5f,%.5f" (sub $lon 0.012) (sub $lat 0.006) (add $lon 0.012) (add $lat 0.006) }}
+      <div class="map">
+        <iframe title="{{ i18n "map" }}" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox={{ $bbox }}&amp;layer=mapnik&amp;marker={{ $lat }},{{ $lon }}"></iframe>
+        <a href="https://www.openstreetmap.org/?mlat={{ $lat }}&amp;mlon={{ $lon }}#map=16/{{ $lat }}/{{ $lon }}" target="_blank" rel="noopener">{{ i18n "openMap" }} ↗</a>
+      </div>
+    {{ end }}
+  </div>
+</section>

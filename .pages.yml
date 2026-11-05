@@ -1,0 +1,216 @@
+# Configurazione del pannello di modifica Pages CMS (https://app.pagescms.org)
+# Definisce quali contenuti si possono modificare e con quali campi.
+
+media:
+  input: static/images
+  output: /images
+
+content:
+  # ------------------------------------------------------------------
+  - name: associazione
+    label: "Dati dell'associazione"
+    type: file
+    path: data/associazione.yaml
+    fields:
+      - name: nome
+        label: "Nome dell'associazione"
+        type: string
+        required: true
+      - name: logo
+        label: "Logo"
+        type: image
+      - name: descrizione_it
+        label: "Descrizione breve (Italiano)"
+        type: text
+      - name: descrizione_en
+        label: "Descrizione breve (English)"
+        type: text
+      - name: email
+        label: "Email"
+        type: string
+      - name: telefono
+        label: "Telefono"
+        type: string
+      - name: indirizzo
+        label: "Indirizzo (via e numero)"
+        type: string
+      - name: citta
+        label: "CAP, città e provincia"
+        type: string
+      - name: codice_fiscale
+        label: "Codice fiscale"
+        type: string
+      - name: latitudine
+        label: "Latitudine per la mappa (es. 45.46420)"
+        type: string
+      - name: longitudine
+        label: "Longitudine per la mappa (es. 9.19000)"
+        type: string
+      - name: social
+        label: "Social network (lascia vuoto per nascondere)"
+        type: object
+        fields:
+          - name: facebook
+            label: "Facebook (indirizzo completo)"
+            type: string
+          - name: instagram
+            label: "Instagram (indirizzo completo)"
+            type: string
+          - name: youtube
+            label: "YouTube (indirizzo completo)"
+            type: string
+
+  # ------------------------------------------------------------------
+  - name: home-it
+    label: "Home – Italiano"
+    type: file
+    path: data/it/home.yaml
+    fields: &homeFields
+      - name: hero
+        label: "Copertina"
+        type: object
+        fields:
+          - { name: titolo, label: "Titolo grande", type: string }
+          - { name: sottotitolo, label: "Sottotitolo", type: text }
+          - { name: immagine, label: "Immagine di sfondo", type: image }
+          - { name: pulsante1_testo, label: "Pulsante 1 – testo", type: string }
+          - { name: pulsante1_link, label: "Pulsante 1 – pagina (es. chi-siamo/)", type: string }
+          - { name: pulsante2_testo, label: "Pulsante 2 – testo", type: string }
+          - { name: pulsante2_link, label: "Pulsante 2 – pagina (es. eventi/)", type: string }
+      - name: punti_forza
+        label: "Riquadri 'Cosa facciamo'"
+        type: object
+        fields:
+          - { name: titolo, label: "Titolo della sezione", type: string }
+          - name: elementi
+            label: "Riquadri"
+            type: object
+            list: true
+            fields:
+              - name: icona
+                label: "Icona"
+                type: select
+                options:
+                  values: [persone, cuore, stella, foglia, libro, musica, calendario, luogo]
+              - { name: titolo, label: "Titolo", type: string }
+              - { name: testo, label: "Testo", type: text }
+      - name: invito
+        label: "Invito finale"
+        type: object
+        fields:
+          - { name: titolo, label: "Titolo", type: string }
+          - { name: testo, label: "Testo", type: text }
+          - { name: pulsante_testo, label: "Pulsante – testo", type: string }
+          - { name: pulsante_link, label: "Pulsante – pagina (es. associati/)", type: string }
+
+  - name: home-en
+    label: "Home – English"
+    type: file
+    path: data/en/home.yaml
+    fields: *homeFields
+
+  # ------------------------------------------------------------------
+  - name: pagine-it
+    label: "Pagine – Italiano"
+    type: collection
+    path: content/it
+    subfolders: false
+    view:
+      fields: [title]
+    fields: &pageFields
+      - { name: title, label: "Titolo", type: string, required: true }
+      - { name: description, label: "Sottotitolo / descrizione", type: text }
+      - { name: translationKey, label: "Codice di collegamento IT/EN (non modificare)", type: string, hidden: true }
+      - { name: body, label: "Testo della pagina", type: rich-text }
+
+  - name: pagine-en
+    label: "Pages – English"
+    type: collection
+    path: content/en
+    subfolders: false
+    view:
+      fields: [title]
+    fields: *pageFields
+
+  # ------------------------------------------------------------------
+  - name: eventi-it
+    label: "Eventi – Italiano"
+    type: collection
+    path: content/it/eventi
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields: &eventFields
+      - { name: title, label: "Titolo", type: string, required: true }
+      - { name: date, label: "Data", type: date, required: true }
+      - { name: ora, label: "Orario (es. 20:30)", type: string }
+      - { name: luogo, label: "Luogo", type: string }
+      - { name: immagine, label: "Immagine", type: image }
+      - { name: description, label: "Breve descrizione (appare nelle schede)", type: text }
+      - { name: translationKey, label: "Codice di collegamento IT/EN (facoltativo: usa lo stesso codice nella versione inglese)", type: string }
+      - { name: body, label: "Testo completo", type: rich-text }
+
+  - name: eventi-en
+    label: "Events – English"
+    type: collection
+    path: content/en/eventi
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields: *eventFields
+
+  # ------------------------------------------------------------------
+  - name: notizie-it
+    label: "Notizie – Italiano"
+    type: collection
+    path: content/it/notizie
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields: &newsFields
+      - { name: title, label: "Titolo", type: string, required: true }
+      - { name: date, label: "Data", type: date, required: true }
+      - { name: immagine, label: "Immagine", type: image }
+      - { name: description, label: "Breve descrizione (appare nelle schede)", type: text }
+      - { name: translationKey, label: "Codice di collegamento IT/EN (facoltativo: usa lo stesso codice nella versione inglese)", type: string }
+      - { name: body, label: "Testo completo", type: rich-text }
+
+  - name: notizie-en
+    label: "News – English"
+    type: collection
+    path: content/en/notizie
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields: *newsFields
+
+  # ------------------------------------------------------------------
+  - name: galleria
+    label: "Galleria fotografica"
+    type: file
+    path: data/galleria.yaml
+    fields:
+      - name: foto
+        label: "Foto"
+        type: object
+        list: true
+        fields:
+          - { name: immagine, label: "Foto", type: image }
+          - { name: didascalia_it, label: "Didascalia (Italiano)", type: string }
+          - { name: didascalia_en, label: "Caption (English)", type: string }

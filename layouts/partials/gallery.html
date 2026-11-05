@@ -1,0 +1,22 @@
+{{ $lang := site.Language.Lang }}
+<section class="section">
+  <div class="container">
+    <div class="gallery">
+      {{ range hugo.Data.galleria.foto }}
+        {{ $cap := index . (printf "didascalia_%s" $lang) }}
+        {{ $src := partial "url.html" .immagine }}
+        <figure>
+          <a href="{{ $src }}" class="lightbox-link" data-caption="{{ $cap }}">
+            <img src="{{ $src }}" alt="{{ $cap }}" loading="lazy">
+          </a>
+          {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
+        </figure>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<dialog class="lightbox">
+  <button class="lightbox-close" type="button" aria-label="{{ i18n "close" }}">×</button>
+  <img src="" alt="">
+  <p class="lightbox-caption"></p>
+</dialog>

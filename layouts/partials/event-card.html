@@ -1,0 +1,12 @@
+<article class="card">
+  <a class="card-media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ partial "url.html" (.Params.immagine | default "/images/evento.svg") }}" alt="" loading="lazy">
+    <span class="date-badge"><strong>{{ .Date.Format "02" }}</strong>{{ time.Format "Jan" .Date }}</span>
+  </a>
+  <div class="card-body">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="meta">{{ partial "icon.html" "calendario" }}<span>{{ time.Format ":date_long" .Date }}{{ with .Params.ora }} · {{ . }}{{ end }}</span></p>
+    {{ with .Params.luogo }}<p class="meta">{{ partial "icon.html" "luogo" }}<span>{{ . }}</span></p>{{ end }}
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</article>

@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{ with .Content }}
+<section class="section">
+  <div class="container narrow prose">{{ . }}</div>
+</section>
+{{ end }}
+{{ if eq .Params.translationKey "gallery" }}{{ partial "gallery.html" . }}{{ end }}
+{{ if eq .Params.translationKey "contact" }}{{ partial "contact.html" . }}{{ end }}
+{{ end }}

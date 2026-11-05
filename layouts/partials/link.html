@@ -1,0 +1,7 @@
+{{- /* Link a una pagina del sito nella lingua corrente (es. "chi-siamo/") */ -}}
+{{- $u := . | default "" -}}
+{{- $out := $u -}}
+{{- if not (or (hasPrefix $u "http") (hasPrefix $u "mailto:") (hasPrefix $u "tel:") (hasPrefix $u "#")) -}}
+  {{- $out = strings.TrimPrefix "/" $u | relLangURL -}}
+{{- end -}}
+{{- return $out -}}

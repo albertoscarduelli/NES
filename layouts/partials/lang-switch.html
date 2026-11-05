@@ -1,0 +1,14 @@
+{{/* Pulsanti IT / EN: porta alla stessa pagina nell'altra lingua, o alla home se manca la traduzione */}}
+{{ $page := . }}
+<ul class="lang-switch">
+  {{ range site.Home.AllTranslations }}
+    {{ $lang := .Language.Lang }}
+    {{ $target := . }}
+    {{ if eq $lang $page.Language.Lang }}
+      {{ $target = $page }}
+    {{ else }}
+      {{ range $page.Translations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
+    {{ end }}
+    <li><a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}" title="{{ .Language.Label }}"{{ if eq $lang $page.Language.Lang }} class="active" aria-current="true"{{ end }}>{{ upper $lang }}</a></li>
+  {{ end }}
+</ul>

@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  <section class="page-header">
+    <div class="container narrow">
+      {{ with site.GetPage "/notizie" }}<a class="back" href="{{ .RelPermalink }}">← {{ i18n "allNews" }}</a>{{ end }}
+      <h1>{{ .Title }}</h1>
+      <ul class="event-facts">
+        <li>{{ partial "icon.html" "calendario" }}<span>{{ time.Format ":date_long" .Date }}</span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow">
+      {{ with .Params.immagine }}<img class="cover" src="{{ partial "url.html" . }}" alt="">{{ end }}
+      <div class="prose">{{ .Content }}</div>
+    </div>
+  </section>
+</article>
+{{ end }}

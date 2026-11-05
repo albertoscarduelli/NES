@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{ $cut := now.AddDate 0 0 -1 }}
+{{ $up := sort (where .RegularPages "Date" "ge" $cut) "Date" "asc" }}
+{{ $past := sort (where .RegularPages "Date" "lt" $cut) "Date" "desc" }}
+<section class="section">
+  <div class="container">
+    <h2>{{ i18n "upcomingEvents" }}</h2>
+    {{ if $up }}
+      <div class="grid grid-3">{{ range $up }}{{ partial "event-card.html" . }}{{ end }}</div>
+    {{ else }}
+      <p class="empty">{{ i18n "noUpcoming" }}</p>
+    {{ end }}
+  </div>
+</section>
+{{ with $past }}
+<section class="section section-alt">
+  <div class="container">
+    <h2>{{ i18n "pastEvents" }}</h2>
+    <div class="grid grid-3 past">{{ range . }}{{ partial "event-card.html" . }}{{ end }}</div>
+  </div>
+</section>
+{{ end }}
+{{ end }}

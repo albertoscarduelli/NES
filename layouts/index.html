@@ -1,0 +1,85 @@
+{{ define "main" }}
+{{ $home := index hugo.Data site.Language.Lang "home" }}
+
+{{ with $home.hero }}
+{{ $h := . }}
+<section class="hero">
+  <img class="hero-img" src="{{ partial "url.html" $h.immagine }}" alt="" fetchpriority="high">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1>{{ $h.titolo }}</h1>
+    <p class="lead">{{ $h.sottotitolo }}</p>
+    <div class="actions">
+      {{ with $h.pulsante1_testo }}<a class="btn btn-accent" href="{{ partial "link.html" $h.pulsante1_link }}">{{ . }} {{ partial "icon.html" "freccia" }}</a>{{ end }}
+      {{ with $h.pulsante2_testo }}<a class="btn btn-ghost" href="{{ partial "link.html" $h.pulsante2_link }}">{{ . }}</a>{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ with .Content }}
+<section class="section">
+  <div class="container narrow prose intro">{{ . }}</div>
+</section>
+{{ end }}
+
+{{ with $home.punti_forza }}
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">{{ .titolo }}</h2>
+    <div class="grid grid-3">
+      {{ range .elementi }}
+      <div class="feature">
+        <div class="feature-icon">{{ partial "icon.html" .icona }}</div>
+        <h3>{{ .titolo }}</h3>
+        <p>{{ .testo }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ $upcoming := sort (where (where site.RegularPages "Section" "eventi") "Date" "ge" (now.AddDate 0 0 -1)) "Date" "asc" }}
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ i18n "upcomingEvents" }}</h2>
+      {{ with site.GetPage "/eventi" }}<a class="link-arrow" href="{{ .RelPermalink }}">{{ i18n "allEvents" }} {{ partial "icon.html" "freccia" }}</a>{{ end }}
+    </div>
+    {{ if $upcoming }}
+      <div class="grid grid-3">{{ range first 3 $upcoming }}{{ partial "event-card.html" . }}{{ end }}</div>
+    {{ else }}
+      <p class="empty">{{ i18n "noUpcoming" }}</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ $news := first 3 (where site.RegularPages "Section" "notizie").ByDate.Reverse }}
+{{ with $news }}
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ i18n "latestNews" }}</h2>
+      {{ with site.GetPage "/notizie" }}<a class="link-arrow" href="{{ .RelPermalink }}">{{ i18n "allNews" }} {{ partial "icon.html" "freccia" }}</a>{{ end }}
+    </div>
+    <div class="grid grid-3">{{ range . }}{{ partial "news-card.html" . }}{{ end }}</div>
+  </div>
+</section>
+{{ end }}
+
+{{ with $home.invito }}
+{{ $c := . }}
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>{{ $c.titolo }}</h2>
+        <p>{{ $c.testo }}</p>
+      </div>
+      {{ with $c.pulsante_testo }}<a class="btn btn-accent" href="{{ partial "link.html" $c.pulsante_link }}">{{ . }} {{ partial "icon.html" "freccia" }}</a>{{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}

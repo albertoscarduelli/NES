@@ -1,0 +1,106 @@
+# =====================================================================
+#  Configurazione tecnica del sito NES
+#  Normalmente NON serve modificare questo file: i contenuti stanno in
+#  "content/" e "data/". Qui si cambiano solo indirizzo e voci di menu.
+# =====================================================================
+baseURL = "https://albertoscarduelli.github.io/NES/"
+title = "NES"
+defaultContentLanguage = "it"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+buildFuture = true            # mostra anche gli eventi con data futura
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  # true = sito in prova: i motori di ricerca (Google ecc.) non lo mostrano.
+  # Metti false quando il sito è approvato e definitivo.
+  bozza = true
+
+[pagination]
+  pagerSize = 9
+
+[markup.goldmark.renderer]
+  unsafe = true               # permette l'HTML scritto dal pannello di modifica
+
+# ---------------------------------------------------------------------
+#  ITALIANO (lingua principale: indirizzi senza prefisso)
+# ---------------------------------------------------------------------
+[languages.it]
+  label = "Italiano"
+  locale = "it-IT"
+  contentDir = "content/it"
+  weight = 1
+
+  [[languages.it.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[languages.it.menus.main]]
+    name = "Chi siamo"
+    pageRef = "/chi-siamo"
+    weight = 20
+  [[languages.it.menus.main]]
+    name = "Eventi"
+    pageRef = "/eventi"
+    weight = 30
+  [[languages.it.menus.main]]
+    name = "Notizie"
+    pageRef = "/notizie"
+    weight = 40
+  [[languages.it.menus.main]]
+    name = "Galleria"
+    pageRef = "/galleria"
+    weight = 50
+  [[languages.it.menus.main]]
+    name = "Diventa socio"
+    pageRef = "/associati"
+    weight = 60
+  [[languages.it.menus.main]]
+    name = "Contatti"
+    pageRef = "/contatti"
+    weight = 70
+
+# ---------------------------------------------------------------------
+#  ENGLISH (indirizzi con prefisso /en/)
+# ---------------------------------------------------------------------
+[languages.en]
+  label = "English"
+  locale = "en-GB"
+  contentDir = "content/en"
+  weight = 2
+
+  [languages.en.permalinks.page]
+    eventi = "/events/:slug/"
+    notizie = "/news/:slug/"
+  [languages.en.permalinks.section]
+    eventi = "/events/"
+    notizie = "/news/"
+
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "About us"
+    pageRef = "/about"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Events"
+    pageRef = "/eventi"
+    weight = 30
+  [[languages.en.menus.main]]
+    name = "News"
+    pageRef = "/notizie"
+    weight = 40
+  [[languages.en.menus.main]]
+    name = "Gallery"
+    pageRef = "/gallery"
+    weight = 50
+  [[languages.en.menus.main]]
+    name = "Join us"
+    pageRef = "/join"
+    weight = 60
+  [[languages.en.menus.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 70

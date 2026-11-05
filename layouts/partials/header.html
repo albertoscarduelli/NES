@@ -1,0 +1,22 @@
+{{ $a := hugo.Data.associazione }}
+{{ $current := . }}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ "/" | relLangURL }}">
+      <img src="{{ partial "url.html" $a.logo }}" alt="" width="40" height="40">
+      <span>{{ $a.nome }}</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="{{ i18n "menu" }}">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav" class="nav">
+      <ul class="menu">
+        {{ range site.Menus.main }}
+          {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+          <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      {{ partial "lang-switch.html" . }}
+    </nav>
+  </div>
+</header>
