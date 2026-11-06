@@ -9,6 +9,6 @@
     {{ else }}
       {{ range $page.Translations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
     {{ end }}
-    <li><a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}" title="{{ .Language.Label }}"{{ if eq $lang $page.Language.Lang }} class="active" aria-current="true"{{ end }}>{{ upper $lang }}</a></li>
+    <li><a href="{{ $target.RelPermalink }}" hreflang="{{ .Language.Locale }}" lang="{{ .Language.Locale }}" title="{{ .Language.Label }}"{{ if eq $lang $page.Language.Lang }} class="active" aria-current="true"{{ end }}>{{ upper $lang }}</a></li>
   {{ end }}
 </ul>

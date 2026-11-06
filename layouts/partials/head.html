@@ -10,9 +10,10 @@
 <meta property="og:title" content="{{ if .IsHome }}{{ $a.nome }}{{ else }}{{ $title }}{{ end }}">
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ $siteDesc }}{{ end }}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="{{ replace site.Language.Locale "-" "_" }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <link rel="icon" href="{{ partial "url.html" $a.logo }}" type="image/svg+xml">
-{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
 {{ end }}
 {{ $css := resources.Get "css/style.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
