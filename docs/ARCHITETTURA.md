@@ -451,9 +451,12 @@ Il sito è pubblicato in una **sottocartella**: `https://albertoscarduelli.githu
 | una risorsa (immagine, file) | `partial "url.html" "/images/x.svg"` | `/NES/images/x.svg` | `/NES/images/x.svg` |
 | una pagina nella lingua corrente | `partial "link.html" "chi-siamo/"` | `/NES/chi-siamo/` | `/NES/en/chi-siamo/` |
 | una pagina nota | `(site.GetPage "/eventi").RelPermalink` | `/NES/eventi/` | `/NES/en/events/` |
-| la home della lingua | `"/" \| relLangURL` | `/NES/` | `/NES/en/` |
+| la home della lingua | `site.Home.RelPermalink` | `/NES/` | `/NES/en/` |
 
 `url.html` e `link.html` tolgono l'eventuale `/` iniziale e lasciano intatti i link esterni (`http…`, `mailto:`, `tel:`, `#…`).
+
+> ⚠️ **Trappola:** non passare mai a `relURL` / `relLangURL` un percorso che **inizia con `/`**. Con una barra iniziale Hugo lo considera relativo alla radice del dominio e **scarta il prefisso `/NES/`**: per esempio `"/" | relLangURL` produce `/`, cioè `albertoscarduelli.github.io/` → errore 404. Per questo `url.html` e `link.html` tolgono la barra prima di chiamarle.
+> In anteprima locale l'errore può passare inosservato, quindi dopo modifiche ai link conviene controllare l'HTML generato con il `baseURL` di produzione: `hugo --baseURL "https://albertoscarduelli.github.io/NES/"` e cerca in `public/` gli `href=/…` che non iniziano con `/NES/`.
 Anche le immagini scritte nel Markdown (`![alt](/images/foto.jpg)`) passano da `url.html` grazie al *render hook* `layouts/_default/_markup/render-image.html`.
 
 ### Permalink in inglese

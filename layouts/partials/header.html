@@ -2,7 +2,7 @@
 {{ $current := . }}
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="{{ "/" | relLangURL }}">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">
       <img src="{{ partial "url.html" $a.logo }}" alt="" width="40" height="40">
       <span>{{ $a.nome }}</span>
     </a>
