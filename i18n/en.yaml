@@ -22,3 +22,8 @@ section_eventi: Events
 section_notizie: News
 desc_eventi: Meetings, celebrations and initiatives organised by NES. Join us!
 desc_notizie: All the latest from the life of the association.
+video: Video
+videos: Videos
+playVideo: Play video
+videoNotice: Pressing play loads the video from YouTube.
+watchOnYoutube: Watch on YouTube

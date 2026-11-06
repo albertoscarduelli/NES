@@ -18,3 +18,9 @@ foto:
   - immagine: /images/galleria-6.svg
     didascalia_it: "Mercatino solidale"
     didascalia_en: "Charity market"
+
+# Video della galleria: incolla il link YouTube del video (anche "youtu.be/...")
+video:
+  - link: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+    titolo_it: "Video di esempio – sostituisci il link"
+    titolo_en: "Sample video – replace the link"

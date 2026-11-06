@@ -43,3 +43,20 @@
     box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
   }
 })();
+
+// Video YouTube: il lettore viene caricato solo quando si preme play (privacy)
+(function () {
+  document.querySelectorAll('.video-frame').forEach(function (frame) {
+    var btn = frame.querySelector('.video-play');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(frame.dataset.youtube) + '?autoplay=1&rel=0';
+      iframe.title = frame.dataset.title || 'YouTube';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.replaceChildren(iframe);
+    });
+  });
+})();

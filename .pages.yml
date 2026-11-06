@@ -151,6 +151,7 @@ content:
       - { name: luogo, label: "Luogo", type: string }
       - { name: immagine, label: "Immagine", type: image }
       - { name: description, label: "Breve descrizione (appare nelle schede)", type: text }
+      - { name: video, label: "Video YouTube (facoltativo: incolla il link del video)", type: string }
       - { name: translationKey, label: "Codice di collegamento IT/EN (facoltativo: usa lo stesso codice nella versione inglese)", type: string }
       - { name: body, label: "Testo completo", type: rich-text }
 
@@ -184,6 +185,7 @@ content:
       - { name: date, label: "Data", type: date, required: true }
       - { name: immagine, label: "Immagine", type: image }
       - { name: description, label: "Breve descrizione (appare nelle schede)", type: text }
+      - { name: video, label: "Video YouTube (facoltativo: incolla il link del video)", type: string }
       - { name: translationKey, label: "Codice di collegamento IT/EN (facoltativo: usa lo stesso codice nella versione inglese)", type: string }
       - { name: body, label: "Testo completo", type: rich-text }
 
@@ -214,3 +216,11 @@ content:
           - { name: immagine, label: "Foto", type: image }
           - { name: didascalia_it, label: "Didascalia (Italiano)", type: string }
           - { name: didascalia_en, label: "Caption (English)", type: string }
+      - name: video
+        label: "Video (YouTube)"
+        type: object
+        list: true
+        fields:
+          - { name: link, label: "Link del video YouTube", type: string }
+          - { name: titolo_it, label: "Titolo (Italiano)", type: string }
+          - { name: titolo_en, label: "Title (English)", type: string }

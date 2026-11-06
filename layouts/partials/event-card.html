@@ -2,6 +2,7 @@
   <a class="card-media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
     <img src="{{ partial "url.html" (.Params.immagine | default "/images/evento.svg") }}" alt="" loading="lazy">
     <span class="date-badge"><strong>{{ .Date.Format "02" }}</strong>{{ time.Format "Jan" .Date }}</span>
+    {{ if .Params.video }}<span class="video-badge">▶ {{ i18n "video" }}</span>{{ end }}
   </a>
   <div class="card-body">
     <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>

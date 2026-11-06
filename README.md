@@ -51,6 +51,17 @@ Qui il testo completo dell'evento. **Grassetto**, *corsivo*, elenchi…
 
 Gli eventi con data passata finiscono da soli in "Eventi passati".
 
+### Video
+
+I video si caricano sul **canale YouTube** dell'associazione; nel sito si incolla solo il link
+(va bene sia `https://www.youtube.com/watch?v=...` sia `https://youtu.be/...`).
+
+- **In un evento o in una notizia**: campo "Video YouTube" (nel file: riga `video: "link"`).
+  Il video compare sotto il testo e la scheda mostra l'etichetta ▶ Video.
+- **Nella galleria**: sezione "Video" della Galleria fotografica (file `data/galleria.yaml`).
+
+Per rispetto della privacy (GDPR) YouTube viene contattato solo quando il visitatore preme ▶.
+
 ---
 
 ## Dove si trova cosa

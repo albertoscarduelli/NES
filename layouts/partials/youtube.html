@@ -1,0 +1,25 @@
+{{- /*
+  Video YouTube rispettoso della privacy.
+  Uso: partial "youtube.html" (dict "url" "<link YouTube>" "title" "<titolo>")
+  Finché il visitatore non preme play, nessun dato viene inviato a YouTube/Google.
+  Accetta link del tipo youtube.com/watch?v=..., youtu.be/..., /shorts/..., /embed/..., /live/...
+*/ -}}
+{{- $url := .url | default "" | strings.TrimSpace -}}
+{{- $id := "" -}}
+{{- with findRESubmatch `(?:youtu\.be/|[?&]v=|/embed/|/shorts/|/live/)([A-Za-z0-9_-]{11})` $url 1 -}}
+  {{- $id = index (index . 0) 1 -}}
+{{- else -}}
+  {{- if findRE `^[A-Za-z0-9_-]{11}$` $url -}}{{- $id = $url -}}{{- end -}}
+{{- end -}}
+{{- if $id }}
+<figure class="video">
+  <div class="video-frame" data-youtube="{{ $id }}" data-title="{{ .title }}">
+    <button type="button" class="video-play" aria-label="{{ i18n "playVideo" }}{{ with .title }}: {{ . }}{{ end }}">
+      <span class="video-play-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      {{ with .title }}<span class="video-title">{{ . }}</span>{{ end }}
+      <span class="video-notice">{{ i18n "videoNotice" }}</span>
+    </button>
+  </div>
+  <figcaption><a href="https://www.youtube.com/watch?v={{ $id }}" target="_blank" rel="noopener">{{ i18n "watchOnYoutube" }} ↗</a></figcaption>
+</figure>
+{{- end -}}

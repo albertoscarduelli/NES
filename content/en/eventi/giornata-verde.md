@@ -5,6 +5,7 @@ ora: "9:00 am – 12:30 pm"
 luogo: Meet at the town park
 immagine: /images/evento-verde.svg
 description: A morning together cleaning up the town's parks and paths.
+video: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
 ---
 
 Thanks to the **40 volunteers** who took part, we collected more than 200 kg of litter. See you next time!

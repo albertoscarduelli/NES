@@ -13,6 +13,7 @@
     <div class="container narrow">
       {{ with .Params.immagine }}<img class="cover" src="{{ partial "url.html" . }}" alt="">{{ end }}
       <div class="prose">{{ .Content }}</div>
+      {{ with .Params.video }}{{ partial "youtube.html" (dict "url" . "title" $.Title) }}{{ end }}
     </div>
   </section>
 </article>

@@ -15,6 +15,18 @@
     </div>
   </div>
 </section>
+{{ with hugo.Data.galleria.video }}
+<section class="section section-alt">
+  <div class="container">
+    <h2>{{ i18n "videos" }}</h2>
+    <div class="video-grid">
+      {{ range . }}
+        {{ partial "youtube.html" (dict "url" .link "title" (index . (printf "titolo_%s" $lang))) }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 <dialog class="lightbox">
   <button class="lightbox-close" type="button" aria-label="{{ i18n "close" }}">×</button>
   <img src="" alt="">
